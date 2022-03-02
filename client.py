@@ -53,13 +53,32 @@ def client_streaming_method(stub):
     print("--------------Call ClientStreamingMethod Begin--------------")
 
     # 创建一个生成器
+
+    CHUNK_SIZE = 500
+    DATASET = 'dataset/data.txt'
+
     # create a generator
     def request_messages():
-        for i in range(5):
-            request = demo_pb2.Request(
-                client_id=CLIENT_ID,
-                request_data=("called by Python client, message:%d" % i))
-            yield request
+        DATASET = 'dataset/data.txt'
+        with open(DATASET) as f:
+            i = 1
+            for piece in read_in_chunks(f):
+                #print('processing chunk : ', i)
+                #print(piece)
+                i += 1
+                request = demo_pb2.Request(
+                    client_id=CLIENT_ID,
+                    request_data=piece)
+                yield request
+
+    def read_in_chunks(file_object, chunk_size=1024):
+        """Lazy function (generator) to read a file piece by piece.
+        Default chunk size: 1k."""
+        while True:
+            data = file_object.read(chunk_size)
+            if not data:
+                break
+            yield data
 
     response = stub.ClientStreamingMethod(request_messages())
     print("resp from server(%d), the message=%s" %
