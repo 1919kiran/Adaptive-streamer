@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """The example of four ways of data transmission using gRPC in Python."""
-
+import time
 from concurrent import futures
 from threading import Thread
 
@@ -43,13 +43,17 @@ class DemoServer(demo_pb2_grpc.GRPCDemoServicer):
     # stream-unary (In a single call, the client can transfer data to the server several times,
     # but the server can only return a response once.)
     def ClientStreamingMethod(self, request_iterator, context):
+        start = time.time()
         print("ClientStreamingMethod called by client...")
         for request in request_iterator:
-            print("recv from client(%d), message= %s" %
-                  (request.client_id, request.request_data))
+            pass
+            # print("recv from client(%d), message= %s" %
+            #       (request.client_id, request.request_data))
         response = demo_pb2.Response(
             server_id=SERVER_ID,
             response_data="Python server ClientStreamingMethod ok")
+        end = time.time()
+        print("Time taken = ", end-start)
         return response
 
     # 服务端流模式（在一次调用中, 客户端只能一次向服务器传输数据, 但是服务器可以多次返回响应）
