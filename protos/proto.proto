@@ -11,5 +11,6 @@ message Response {
 }
 
 service AdaptiveStreamer {
-    rpc ClientTransfer (stream Request) returns (Response);
+    rpc ClientStreamTransfer (stream Request) returns (Response);
+    rpc ClientUnaryTransfer (Request) returns (Response);
 }

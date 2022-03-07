@@ -14,8 +14,13 @@ class AdaptiveStreamerStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.ClientTransfer = channel.stream_unary(
-                '/AdaptiveStreamer/ClientTransfer',
+        self.ClientStreamTransfer = channel.stream_unary(
+                '/AdaptiveStreamer/ClientStreamTransfer',
+                request_serializer=protos_dot_proto__pb2.Request.SerializeToString,
+                response_deserializer=protos_dot_proto__pb2.Response.FromString,
+                )
+        self.ClientUnaryTransfer = channel.unary_unary(
+                '/AdaptiveStreamer/ClientUnaryTransfer',
                 request_serializer=protos_dot_proto__pb2.Request.SerializeToString,
                 response_deserializer=protos_dot_proto__pb2.Response.FromString,
                 )
@@ -24,7 +29,13 @@ class AdaptiveStreamerStub(object):
 class AdaptiveStreamerServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def ClientTransfer(self, request_iterator, context):
+    def ClientStreamTransfer(self, request_iterator, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ClientUnaryTransfer(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -33,8 +44,13 @@ class AdaptiveStreamerServicer(object):
 
 def add_AdaptiveStreamerServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'ClientTransfer': grpc.stream_unary_rpc_method_handler(
-                    servicer.ClientTransfer,
+            'ClientStreamTransfer': grpc.stream_unary_rpc_method_handler(
+                    servicer.ClientStreamTransfer,
+                    request_deserializer=protos_dot_proto__pb2.Request.FromString,
+                    response_serializer=protos_dot_proto__pb2.Response.SerializeToString,
+            ),
+            'ClientUnaryTransfer': grpc.unary_unary_rpc_method_handler(
+                    servicer.ClientUnaryTransfer,
                     request_deserializer=protos_dot_proto__pb2.Request.FromString,
                     response_serializer=protos_dot_proto__pb2.Response.SerializeToString,
             ),
@@ -49,7 +65,7 @@ class AdaptiveStreamer(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def ClientTransfer(request_iterator,
+    def ClientStreamTransfer(request_iterator,
             target,
             options=(),
             channel_credentials=None,
@@ -59,7 +75,24 @@ class AdaptiveStreamer(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.stream_unary(request_iterator, target, '/AdaptiveStreamer/ClientTransfer',
+        return grpc.experimental.stream_unary(request_iterator, target, '/AdaptiveStreamer/ClientStreamTransfer',
+            protos_dot_proto__pb2.Request.SerializeToString,
+            protos_dot_proto__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ClientUnaryTransfer(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/AdaptiveStreamer/ClientUnaryTransfer',
             protos_dot_proto__pb2.Request.SerializeToString,
             protos_dot_proto__pb2.Response.FromString,
             options, channel_credentials,
