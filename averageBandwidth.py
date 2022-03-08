@@ -3,11 +3,15 @@ import pyshark
 import psutil
 import time
 
+import data_size
+import data_size
+
 bandwidths = []
 n = 0
 average = 0.0
+d = data_size.DataSize()
 
-
+# Function to get current traffic on the channel
 def get_bandwidth():
     global n, average
     # Get net in/out
@@ -43,7 +47,21 @@ def get_bandwidth():
     return network
 
 
-# Press the green button in the gutter to run the script.
-
+# Below main function will detect current traffic every 10s on channel to decide upon next packet size to be sent.
+prev = None
 while True:
-    print(get_bandwidth())
+    traffic_values = get_bandwidth()
+    print(traffic_values)
+    if not prev:
+        prev = traffic_values['average']
+        continue
+
+    # Below if...else conditions are for variance detection to resize packet size
+    elif traffic_values['average']-prev > 2000:
+        d.setChunkSize((traffic_values['traffic_out']//100)*100)
+    elif prev - traffic_values['average'] > 2000:
+        d.setChunkSize((traffic_values['traffic_out']//100)*100)
+
+    # setting prev value to current value to detect variance in next loop
+    prev = traffic_values['average']
+    print("Chunk Size: ", d.getChunkSize())

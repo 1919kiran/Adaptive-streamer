@@ -2,6 +2,7 @@ import time
 import grpc
 import sys
 
+import data_size as d
 from protos import proto_pb2 as pb2
 from protos import proto_pb2_grpc as pb2_grpc
 
@@ -42,7 +43,9 @@ def stream_data():
     print("Time taken for transfer = " , end-start)
 
 
-def read_in_chunks(file_object, chunk_size=2048):
+def read_in_chunks(file_object):
+    chunk_size = d.getChunkSize()
+    print("ChunkSize: ", chunk_size)
     while True:
         data = file_object.read(chunk_size)
         if not data:
