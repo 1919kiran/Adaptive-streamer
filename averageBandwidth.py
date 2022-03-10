@@ -4,12 +4,11 @@ import psutil
 import time
 
 import data_size
-import data_size
+import data_size as d
 
 bandwidths = []
 n = 0
 average = 0.0
-d = data_size.DataSize()
 
 # Function to get current traffic on the channel
 def get_bandwidth():

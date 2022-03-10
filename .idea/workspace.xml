@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47a11f5c-a3e9-4b2a-9e7e-0a48ab6af02d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/data_size.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/adaptive-streaming.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/adaptive-streaming.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/averageBandwidth.py" beforeDir="false" afterPath="$PROJECT_DIR$/averageBandwidth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_size.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_size.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

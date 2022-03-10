@@ -15,6 +15,7 @@ class Client(object):
         self.channel = grpc.insecure_channel(host_address)
         self.stub = pb2_grpc.AdaptiveStreamerStub(self.channel)
 
+
     def send_message(self, request_data):
         request = pb2.Request(client_id=CLIENT_ID,
                               request_data=request_data)
@@ -28,7 +29,7 @@ def stream_data():
         server_address = sys.argv[2]
     except IndexError:
         print("No proper address, taking localhost as server address")
-        server_address = "localhost:50051"
+        server_address = "localhost:8081"
 
     client = Client(host_address=server_address)
 
