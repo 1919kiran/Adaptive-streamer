@@ -19,6 +19,8 @@ class Server(pb2_grpc.AdaptiveStreamerServicer):
     def ClientUnaryTransfer(self, request, context):
         # print("SimpleMethod called by client(%d) the message: %s" %
         #       (request.client_id, request.request_data))
+        f = open("output.txt", "a")
+        f.write(request.request_data)
         response = pb2.Response(
             server_id=SERVER_ID,
             response_data="Python server SimpleMethod Ok!!!!")
@@ -30,7 +32,7 @@ def serve():
         server_address = sys.argv[2]
     except IndexError:
         print("No proper address, taking localhost as server address")
-        server_address = "localhost:50051"
+        server_address = "localhost:8000"
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     pb2_grpc.add_AdaptiveStreamerServicer_to_server(Server(), server)
     server.add_insecure_port(server_address)

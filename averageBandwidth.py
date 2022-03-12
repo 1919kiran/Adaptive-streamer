@@ -10,6 +10,7 @@ bandwidths = []
 n = 0
 average = 0.0
 
+
 # Function to get current traffic on the channel
 def get_bandwidth():
     global n, average
@@ -56,10 +57,10 @@ while True:
         continue
 
     # Below if...else conditions are for variance detection to resize packet size
-    elif traffic_values['average']-prev > 2000:
-        d.setChunkSize((traffic_values['traffic_out']//100)*100)
+    elif traffic_values['average'] - prev > 2000:
+        d.setChunkSize((traffic_values['traffic_out'] // 100) * 100)
     elif prev - traffic_values['average'] > 2000:
-        d.setChunkSize((traffic_values['traffic_out']//100)*100)
+        d.setChunkSize((traffic_values['traffic_out'] // 100) * 100)
 
     # setting prev value to current value to detect variance in next loop
     prev = traffic_values['average']
