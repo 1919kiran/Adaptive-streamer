@@ -1,2 +1,2 @@
 To create proto files:
-python -m grpc_tools.protoc -I=protos --python_out=protos/ --grpc_python_out=protos/ protos/proto.proto
+python -m grpc_tools.protoc --proto_path=. protos/proto.proto --python_out=. --grpc_python_out=.

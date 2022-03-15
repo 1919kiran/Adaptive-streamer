@@ -3,13 +3,25 @@ import pyshark
 import psutil
 import time
 
-import data_size
-import data_size as d
+from client import Client
 
 bandwidths = []
 n = 0
 average = 0.0
 
+class DataSize(object):
+    # initializing the packet size to be transferred through medium to default value.
+    chunkSize = 2048
+
+
+def getChunkSize():
+    print("In data size file: ",DataSize.chunkSize)
+    return DataSize.chunkSize
+
+
+# utility function to set packet size.
+def setChunkSize(newSize):
+    DataSize.chunkSize = newSize
 
 # Function to get current traffic on the channel
 def get_bandwidth():
@@ -58,10 +70,12 @@ while True:
 
     # Below if...else conditions are for variance detection to resize packet size
     elif traffic_values['average'] - prev > 2000:
-        d.setChunkSize((traffic_values['traffic_out'] // 100) * 100)
+        Client.chunkSize = (traffic_values['traffic_out'] // 100) * 100
+        # d.setChunkSize((traffic_values['traffic_out'] // 100) * 100)
     elif prev - traffic_values['average'] > 2000:
-        d.setChunkSize((traffic_values['traffic_out'] // 100) * 100)
+        Client.chunkSize = (traffic_values['traffic_out'] // 100) * 100
+        # d.setChunkSize((traffic_values['traffic_out'] // 100) * 100)
 
     # setting prev value to current value to detect variance in next loop
     prev = traffic_values['average']
-    print("Chunk Size: ", d.getChunkSize())
+    print("Chunk Size: ", Client.chunkSize)

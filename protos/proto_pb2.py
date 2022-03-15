@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12protos/proto.proto\"2\n\x07Request\x12\x11\n\tclient_id\x18\x01 \x01(\x03\x12\x14\n\x0crequest_data\x18\x02 \x01(\t\"4\n\x08Response\x12\x11\n\tserver_id\x18\x01 \x01(\x03\x12\x15\n\rresponse_data\x18\x02 \x01(\t2m\n\x10\x41\x64\x61ptiveStreamer\x12-\n\x14\x43lientStreamTransfer\x12\x08.Request\x1a\t.Response(\x01\x12*\n\x13\x43lientUnaryTransfer\x12\x08.Request\x1a\t.Responseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12protos/proto.proto\"F\n\x07Request\x12\x11\n\tclient_id\x18\x01 \x01(\x03\x12\x14\n\x0crequest_data\x18\x02 \x01(\t\x12\x12\n\nhash_value\x18\x03 \x01(\x03\"F\n\x08Response\x12\x11\n\tserver_id\x18\x01 \x01(\x03\x12\x15\n\rresponse_data\x18\x02 \x01(\t\x12\x10\n\x08received\x18\x03 \x01(\x08\x32m\n\x10\x41\x64\x61ptiveStreamer\x12-\n\x14\x43lientStreamTransfer\x12\x08.Request\x1a\t.Response(\x01\x12*\n\x13\x43lientUnaryTransfer\x12\x08.Request\x1a\t.Responseb\x06proto3')
 
 
 
@@ -39,9 +39,9 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   _REQUEST._serialized_start=22
-  _REQUEST._serialized_end=72
-  _RESPONSE._serialized_start=74
-  _RESPONSE._serialized_end=126
-  _ADAPTIVESTREAMER._serialized_start=128
-  _ADAPTIVESTREAMER._serialized_end=237
+  _REQUEST._serialized_end=92
+  _RESPONSE._serialized_start=94
+  _RESPONSE._serialized_end=164
+  _ADAPTIVESTREAMER._serialized_start=166
+  _ADAPTIVESTREAMER._serialized_end=275
 # @@protoc_insertion_point(module_scope)

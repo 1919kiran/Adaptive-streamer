@@ -5,13 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47a11f5c-a3e9-4b2a-9e7e-0a48ab6af02d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/dataset/data2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dataset/data3.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/averageBandwidth.py" beforeDir="false" afterPath="$PROJECT_DIR$/averageBandwidth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_size.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_size.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataset/data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dataset/data.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_size.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/protos/proto.proto" beforeDir="false" afterPath="$PROJECT_DIR$/protos/proto.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/protos/proto_pb2.py" beforeDir="false" afterPath="$PROJECT_DIR$/protos/proto_pb2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +68,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.averageBandwidth">
+  <component name="RunManager" selected="Python.client">
     <configuration name="averageBandwidth" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="adaptive-streaming" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -126,7 +127,7 @@
       <option name="presentableId" value="Default" />
       <updated>1646180716699</updated>
       <workItem from="1646180718427" duration="2547000" />
-      <workItem from="1646873779726" duration="5498000" />
+      <workItem from="1646873779726" duration="20166000" />
     </task>
     <servers />
   </component>

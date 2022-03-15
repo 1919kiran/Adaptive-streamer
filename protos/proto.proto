@@ -3,11 +3,13 @@ syntax = "proto3";
 message Request {
     int64 client_id = 1;
     string request_data = 2;
+    int64 hash_value = 3;
 }
 
 message Response {
     int64 server_id = 1;
     string response_data = 2;
+    bool received = 3;
 }
 
 service AdaptiveStreamer {
