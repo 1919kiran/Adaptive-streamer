@@ -6,6 +6,7 @@ import threading
 from protos import proto_pb2 as pb2
 from protos import proto_pb2_grpc as pb2_grpc
 import config
+import hashlib
 
 CLIENT_ID = 1
 average = 0.0
@@ -44,8 +45,7 @@ def stream_data():
     with open(config.DATASET) as f:
         for piece in read_in_chunks(f):
             chunk_start = time.time()
-            print("piece=",hash(piece))
-            result = client.send_message(request_data=piece, hash_value=str(hash(piece)))
+            result = client.send_message(request_data=piece, hash_value=str(hashlib.md5(piece.encode()).hexdigest()))
             packet_loss.append(result.received)
             latency.append(time.time() - chunk_start)
 
