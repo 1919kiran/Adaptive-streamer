@@ -38,12 +38,7 @@ def getChunkSize():
 
 
 def stream_data():
-    try:
-        server_address = sys.argv[1]
-    except IndexError:
-        server_address = "localhost:8081"
-
-    client = Client(host_address=server_address)
+    client = Client(host_address=config.SERVER)
     start = time.time()
     latency = []
     with open(config.DATASET) as f:
@@ -56,6 +51,7 @@ def stream_data():
     end = time.time()
     print("Time taken for transfer = ", end - start)
     print(max(latency))
+    print(packet_loss)
     exit(0)
 
 
