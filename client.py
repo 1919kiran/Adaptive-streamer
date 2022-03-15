@@ -44,7 +44,8 @@ def stream_data():
     with open(config.DATASET) as f:
         for piece in read_in_chunks(f):
             chunk_start = time.time()
-            result = client.send_message(request_data=piece, hash_value=hash(piece))
+            print("piece=",hash(piece))
+            result = client.send_message(request_data=piece, hash_value=str(hash(piece)))
             packet_loss.append(result.received)
             latency.append(time.time() - chunk_start)
 
@@ -122,5 +123,5 @@ def average_bandwidth():
 
 
 if __name__ == '__main__':
-    threading.Thread(target=average_bandwidth).start()
+    #threading.Thread(target=average_bandwidth).start()
     threading.Thread(target=stream_data).start()
