@@ -1,1 +1,6 @@
-
+.DS_Store
+.idea/
+dataset/
+code/protos/__pycache__/proto_pb2.cpython-38.pyc
+protos/__pycache__/proto_pb2_grpc.cpython-38.pyc
+protos/__pycache__/proto_pb2.cpython-38.pyc
