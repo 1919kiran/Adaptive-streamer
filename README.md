@@ -1,3 +1,5 @@
+The Project is to develop an algorithm that will adapt to changing network conditions like varying bandwidth, spotty connections, packet failures, etc. We have developed an algorithm which will continuously sense the medium and get network parameters based on which the next packet size will get adapt to thus improving latency of the packet.
+
 ### To create proto files:
 python -m grpc_tools.protoc --proto_path=. protos/proto.proto --python_out=. --grpc_python_out=.
 
