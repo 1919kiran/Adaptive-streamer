@@ -9,19 +9,21 @@ bandwidths = []
 n = 0
 average = 0.0
 
+
 class DataSize(object):
     # initializing the packet size to be transferred through medium to default value.
     chunkSize = 2048
 
 
 def getChunkSize():
-    print("In data size file: ",DataSize.chunkSize)
+    print("In data size file: ", DataSize.chunkSize)
     return DataSize.chunkSize
 
 
 # utility function to set packet size.
 def setChunkSize(newSize):
     DataSize.chunkSize = newSize
+
 
 # Function to get current traffic on the channel
 def get_bandwidth():
@@ -63,7 +65,7 @@ def get_bandwidth():
 prev = None
 while True:
     traffic_values = get_bandwidth()
-    print(traffic_values)
+    # print(traffic_values)
     if not prev:
         prev = traffic_values['average']
         continue
@@ -78,4 +80,4 @@ while True:
 
     # setting prev value to current value to detect variance in next loop
     prev = traffic_values['average']
-    print("Chunk Size: ", Client.chunkSize)
+    # print("Chunk Size: ", Client.chunkSize)

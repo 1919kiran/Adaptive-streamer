@@ -1,3 +1,4 @@
+import os
 import time
 import grpc
 import sys
@@ -13,6 +14,8 @@ average = 0.0
 n = 0
 bandwidths = []
 packet_loss = []
+packets = []
+chunks = []
 
 
 class Client(object):
@@ -42,23 +45,34 @@ def stream_data():
     client = Client(host_address=config.SERVER)
     start = time.time()
     latency = []
+    mem_before = mem_info()
+
     with open(config.DATASET) as f:
         for piece in read_in_chunks(f):
+            chunks.append(Client.chunkSize)
             chunk_start = time.time()
             result = client.send_message(request_data=piece, hash_value=str(hashlib.md5(piece.encode()).hexdigest()))
             packet_loss.append(result.received)
             latency.append(time.time() - chunk_start)
 
     end = time.time()
-    print("Time taken for transfer = ", end - start)
-    print(max(latency))
-    print(packet_loss)
+    mem_after = mem_info()
+    cpu_after = psutil.cpu_percent()
+
+    print("Number of requests  = ", len(chunks))
+    print("Time taken          = ", round(end - start, 2))
+    print("Max Latency         = ", round(max(latency), 2))
+    print("Avg Latency         = ", round(sum(latency) / len(latency), 2))
+    print("consumed memory     = {:,}".format(mem_before, mem_after, mem_after - mem_before))
+    print("CPU Utilization     = ", cpu_after)
+    print("Initial packet size = ", round(config.PACKET_SIZE, 2), " bytes")
+    print("Avg Packet size     = ", round(sum(chunks)/len(chunks)/1024, 2), " bytes")
     exit(0)
 
 
 def read_in_chunks(file_object):
     while True:
-        print("ChunkSize: ", Client.chunkSize)
+        # print("ChunkSize: ", Client.chunkSize)
         # print("Chunk Size: ", Client.chunkSize)
         data = file_object.read(Client.chunkSize)
         if not data:
@@ -106,7 +120,7 @@ def average_bandwidth():
     prev = None
     while True:
         traffic_values = get_bandwidth([])
-        print(traffic_values)
+        # print(traffic_values)
         if not prev:
             prev = traffic_values['average']
             continue
@@ -120,6 +134,16 @@ def average_bandwidth():
         # setting prev value to current value to detect variance in next loop
         prev = traffic_values['average']
         # print("Chunk-Size: ", Client.chunkSize)
+
+
+def mem_info():
+    return psutil.Process(os.getpid()).memory_info().rss
+
+
+def mem_stats():
+    mem_before = mem_info()
+    mem_after = mem_info()
+    print("consumed memory = {:,}".format(mem_before, mem_after, mem_after - mem_before))
 
 
 if __name__ == '__main__':
