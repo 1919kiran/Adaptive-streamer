@@ -6,7 +6,7 @@ base64 /dev/urandom | head -c 1000000 > dataset/data3.txt
 
 
 ### Steps to run the code
-1. Download the code base using SSH or Http link.
+1. Download the code base using SSH or HTTPS link.
 2. Install library using requirements.txt file.
 3. update the IP address of client and server in config file.
 4. run server using command: python server.py.
